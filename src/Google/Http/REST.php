@@ -83,7 +83,7 @@ class Google_Http_REST
       if ($response instanceof \GuzzleHttp\Message\ResponseInterface) {
         $response = new Response(
             $response->getStatusCode(),
-            $response->getHeaders() ?: [],
+            $response->getHeaders() ?: array(),
             $response->getBody(),
             $response->getProtocolVersion(),
             $response->getReasonPhrase()

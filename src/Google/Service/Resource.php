@@ -197,7 +197,7 @@ class Google_Service_Resource
     $request = new Request(
         $method['httpMethod'],
         $url,
-        ['content-type' => 'application/json'],
+        array('content-type' => 'application/json'),
         $postBody ? json_encode($postBody) : ''
     );
 

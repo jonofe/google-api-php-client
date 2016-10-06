@@ -18,7 +18,7 @@ class Google_AuthHandler_Guzzle5AuthHandler
   protected $cache;
   protected $cacheConfig;
 
-  public function __construct(CacheItemPoolInterface $cache = null, array $cacheConfig = [])
+  public function __construct(CacheItemPoolInterface $cache = null, array $cacheConfig = array())
   {
     $this->cache = $cache;
     $this->cacheConfig = $cacheConfig;
@@ -75,7 +75,7 @@ class Google_AuthHandler_Guzzle5AuthHandler
 
   public function attachKey(ClientInterface $http, $key)
   {
-    $subscriber = new SimpleSubscriber(['key' => $key]);
+    $subscriber = new SimpleSubscriber(array('key' => $key));
 
     $http->setDefaultOption('auth', 'simple');
     $http->getEmitter()->attach($subscriber);
@@ -86,14 +86,14 @@ class Google_AuthHandler_Guzzle5AuthHandler
   private function createAuthHttp(ClientInterface $http)
   {
     return new Client(
-        [
+        array(
           'base_url' => $http->getBaseUrl(),
-          'defaults' => [
+          'defaults' => array(
             'exceptions' => true,
             'verify' => $http->getDefaultOption('verify'),
             'proxy' => $http->getDefaultOption('proxy'),
-          ]
-        ]
+          )
+        )
     );
   }
 }

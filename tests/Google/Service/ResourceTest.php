@@ -186,10 +186,10 @@ class Google_Service_ResourceTest extends BaseTest
   public function testNoExpectedClassForAltMediaWithHttpSuccess()
   {
     // set the "alt" parameter to "media"
-    $arguments = [['alt' => 'media']];
+    $arguments = array(array('alt' => 'media'));
     $request = new Request('GET', '/?alt=media');
     $body = Psr7\stream_for('thisisnotvalidjson');
-    $response = new Response(200, [], $body);
+    $response = new Response(200, array(), $body);
 
     $http = $this->getMockBuilder("GuzzleHttp\Client")
         ->disableOriginalConstructor()
@@ -233,10 +233,10 @@ class Google_Service_ResourceTest extends BaseTest
   public function testNoExpectedClassForAltMediaWithHttpFail()
   {
     // set the "alt" parameter to "media"
-    $arguments = [['alt' => 'media']];
+    $arguments = array(array('alt' => 'media'));
     $request = new Request('GET', '/?alt=media');
     $body = Psr7\stream_for('thisisnotvalidjson');
-    $response = new Response(400, [], $body);
+    $response = new Response(400, array(), $body);
 
     $http = $this->getMockBuilder("GuzzleHttp\Client")
         ->disableOriginalConstructor()
@@ -284,10 +284,10 @@ class Google_Service_ResourceTest extends BaseTest
   public function testErrorResponseWithVeryLongBody()
   {
     // set the "alt" parameter to "media"
-    $arguments = [['alt' => 'media']];
+    $arguments = array(array('alt' => 'media'));
     $request = new Request('GET', '/?alt=media');
     $body = Psr7\stream_for('this will be pulled into memory');
-    $response = new Response(400, [], $body);
+    $response = new Response(400, array(), $body);
 
     $http = $this->getMockBuilder("GuzzleHttp\Client")
         ->disableOriginalConstructor()
@@ -335,11 +335,11 @@ class Google_Service_ResourceTest extends BaseTest
   public function testSuccessResponseWithVeryLongBody()
   {
     // set the "alt" parameter to "media"
-    $arguments = [['alt' => 'media']];
+    $arguments = array(array('alt' => 'media'));
     $request = new Request('GET', '/?alt=media');
     $resource = fopen('php://temp', 'r+');
     $stream = new Test_MediaType_Stream($resource);
-    $response = new Response(200, [], $stream);
+    $response = new Response(200, array(), $stream);
 
     $http = $this->getMockBuilder("GuzzleHttp\Client")
         ->disableOriginalConstructor()
@@ -385,15 +385,15 @@ class Google_Service_ResourceTest extends BaseTest
   {
     // set the "alt" parameter to "media"
     $request = new Request('GET', '/');
-    $errors = [ ["domain" => "foo"] ];
+    $errors = array(array("domain" => "foo"));
 
-    $body = Psr7\stream_for(json_encode([
-      'error' => [
+    $body = Psr7\stream_for(json_encode(array(
+      'error' => array(
         'errors' => $errors
-      ]
-    ]));
+      )
+    )));
 
-    $response = new Response(400, [], $body);
+    $response = new Response(400, array(), $body);
 
     $http = $this->getMockBuilder("GuzzleHttp\Client")
         ->disableOriginalConstructor()

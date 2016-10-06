@@ -26,7 +26,7 @@ class Google_AuthHandler_AuthHandlerFactory
    * @return Google_AuthHandler_Guzzle5AuthHandler|Google_AuthHandler_Guzzle6AuthHandler
    * @throws Exception
    */
-  public static function build($cache = null, array $cacheConfig = [])
+  public static function build($cache = null, array $cacheConfig = array())
   {
     $version = ClientInterface::VERSION;
 

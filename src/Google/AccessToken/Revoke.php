@@ -62,10 +62,10 @@ class Google_AccessToken_Revoke
     $request = new Request(
         'POST',
         Google_Client::OAUTH2_REVOKE_URI,
-        [
+        array(
           'Cache-Control' => 'no-store',
           'Content-Type'  => 'application/x-www-form-urlencoded',
-        ],
+        ),
         $body
     );
 

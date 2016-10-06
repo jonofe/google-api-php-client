@@ -107,10 +107,10 @@ class Google_Http_BatchTest extends BaseTest
     $storage = new Google_Service_Storage($client);
     $bucket = 'testbucket';
     $stream = Psr7\stream_for("testbucket-text");
-    $params = [
+    $params = array(
         'data' => $stream,
         'mimeType' => 'text/plain',
-    ];
+    );
 
     // Metadata object for new Google Cloud Storage object
     $obj = new Google_Service_Storage_StorageObject();

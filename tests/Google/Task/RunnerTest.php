@@ -301,7 +301,7 @@ class Google_Task_RunnerTest extends BaseTest
    */
   public function testBadTaskCallback()
   {
-    $config = [];
+    $config = array();
     new Google_Task_Runner($config, '', 5);
   }
 

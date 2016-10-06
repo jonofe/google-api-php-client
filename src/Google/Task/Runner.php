@@ -71,7 +71,7 @@ class Google_Task_Runner
   /**
    * @var array $retryMap Map of errors with retry counts.
    */
-  protected $retryMap = [
+  protected $retryMap = array(
     '500' => self::TASK_RETRY_ALWAYS,
     '503' => self::TASK_RETRY_ALWAYS,
     'rateLimitExceeded' => self::TASK_RETRY_ALWAYS,
@@ -81,7 +81,7 @@ class Google_Task_Runner
     28 => self::TASK_RETRY_ALWAYS,  // CURLE_OPERATION_TIMEOUTED
     35 => self::TASK_RETRY_ALWAYS,  // CURLE_SSL_CONNECT_ERROR
     52 => self::TASK_RETRY_ALWAYS   // CURLE_GOT_NOTHING
-  ];
+  );
 
   /**
    * Creates a new task runner with exponential backoff support.

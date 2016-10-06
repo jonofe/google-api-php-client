@@ -40,15 +40,15 @@ class BaseTest extends PHPUnit_Framework_TestCase
   public function getCache($path = null)
   {
     $path = $path ?: sys_get_temp_dir().'/google-api-php-client-tests';
-    return new Pool(new FileSystem(['path' => $path]));
+    return new Pool(new FileSystem(array('path' => $path)));
   }
 
   private function createClient()
   {
-    $options = [
+    $options = array(
       'auth' => 'google_auth',
       'exceptions' => false,
-    ];
+    );
 
     if ($proxy = getenv('HTTP_PROXY')) {
       $options['proxy'] = $proxy;
@@ -57,7 +57,7 @@ class BaseTest extends PHPUnit_Framework_TestCase
 
     // adjust constructor depending on guzzle version
     if (!$this->isGuzzle6()) {
-      $options = ['defaults' => $options];
+      $options = array('defaults' => $options);
     }
 
     $httpClient = new GuzzleHttp\Client($options);
@@ -65,14 +65,14 @@ class BaseTest extends PHPUnit_Framework_TestCase
     $client = new Google_Client();
     $client->setApplicationName('google-api-php-client-tests');
     $client->setHttpClient($httpClient);
-    $client->setScopes([
+    $client->setScopes(array(
         "https://www.googleapis.com/auth/plus.me",
         "https://www.googleapis.com/auth/urlshortener",
         "https://www.googleapis.com/auth/tasks",
         "https://www.googleapis.com/auth/adsense",
         "https://www.googleapis.com/auth/youtube",
         "https://www.googleapis.com/auth/drive",
-    ]);
+    ));
 
     if ($this->key) {
       $client->setDeveloperKey($this->key);

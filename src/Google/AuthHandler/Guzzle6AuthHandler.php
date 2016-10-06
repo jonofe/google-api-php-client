@@ -18,7 +18,7 @@ class Google_AuthHandler_Guzzle6AuthHandler
   protected $cache;
   protected $cacheConfig;
 
-  public function __construct(CacheItemPoolInterface $cache = null, array $cacheConfig = [])
+  public function __construct(CacheItemPoolInterface $cache = null, array $cacheConfig = array())
   {
     $this->cache = $cache;
     $this->cacheConfig = $cacheConfig;
@@ -81,7 +81,7 @@ class Google_AuthHandler_Guzzle6AuthHandler
 
   public function attachKey(ClientInterface $http, $key)
   {
-    $middleware = new SimpleMiddleware(['key' => $key]);
+    $middleware = new SimpleMiddleware(array('key' => $key));
 
     $config = $http->getConfig();
     $config['handler']->remove('google_auth');
@@ -95,12 +95,12 @@ class Google_AuthHandler_Guzzle6AuthHandler
   private function createAuthHttp(ClientInterface $http)
   {
     return new Client(
-        [
+        array(
           'base_uri' => $http->getConfig('base_uri'),
           'exceptions' => true,
           'verify' => $http->getConfig('verify'),
           'proxy' => $http->getConfig('proxy'),
-        ]
+        )
     );
   }
 }

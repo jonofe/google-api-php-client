@@ -83,7 +83,7 @@ class Google_Client
 
   /** @var array $scopes */
   // Scopes requested by the client
-  protected $requestedScopes = [];
+  protected $requestedScopes = array();
 
   /**
    * Construct the Google Client.
@@ -93,7 +93,7 @@ class Google_Client
   public function __construct(array $config = array())
   {
     $this->config = array_merge(
-        [
+        array(
           'application_name' => '',
 
           // Don't change these unless you're working against a special development
@@ -133,12 +133,12 @@ class Google_Client
           'retry' => array(),
 
           // cache config for downstream auth caching
-          'cache_config' => [],
+          'cache_config' => array(),
 
           // function to be called when an access token is fetched
           // follows the signature function ($cacheKey, $accessToken)
           'token_callback' => null,
-        ],
+        ),
         $config
     );
   }
@@ -304,7 +304,7 @@ class Google_Client
       : var_export($this->config['include_granted_scopes'], true);
 
     $params = array_filter(
-        [
+        array(
           'access_type' => $this->config['access_type'],
           'approval_prompt' => $approvalPrompt,
           'hd' => $this->config['hd'],
@@ -315,7 +315,7 @@ class Google_Client
           'response_type' => 'code',
           'scope' => $scope,
           'state' => $this->config['state'],
-        ]
+        )
     );
 
     // If the list of scopes contains plus.login, add request_visible_actions
@@ -923,7 +923,7 @@ class Google_Client
   protected function createOAuth2Service()
   {
     $auth = new OAuth2(
-        [
+        array(
           'clientId'          => $this->getClientId(),
           'clientSecret'      => $this->getClientSecret(),
           'authorizationUri'   => self::OAUTH2_AUTH_URL,
@@ -932,7 +932,7 @@ class Google_Client
           'issuer'            => $this->config['client_id'],
           'signingKey'        => $this->config['signing_key'],
           'signingAlgorithm'  => $this->config['signing_algorithm'],
-        ]
+        )
     );
 
     return $auth;
@@ -1036,14 +1036,14 @@ class Google_Client
 
   protected function createDefaultHttpClient()
   {
-    $options = ['exceptions' => false];
+    $options = array('exceptions' => false);
 
     $version = ClientInterface::VERSION;
     if ('5' === $version[0]) {
-      $options = [
+      $options = array(
         'base_url' => $this->config['base_path'],
         'defaults' => $options,
-      ];
+      );
       if ($this->isAppEngine()) {
         // set StreamHandler on AppEngine by default
         $options['handler']  = new StreamHandler();

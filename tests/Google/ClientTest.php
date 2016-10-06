@@ -109,11 +109,11 @@ class Google_ClientTest extends BaseTest
     $client = $this->getClient();
 
     $http = new Client();
-    $client->setAccessToken([
+    $client->setAccessToken(array(
       'access_token' => 'test_token',
       'expires_in'   => 3600,
       'created'      => time(),
-    ]);
+    ));
     $client->setScopes('test_scope');
     $client->authorize($http);
 
@@ -446,7 +446,7 @@ class Google_ClientTest extends BaseTest
       ->will($this->returnValue($response));
 
     if ($this->isGuzzle5()) {
-      $guzzle5Request = new GuzzleHttp\Message\Request('POST', '/', ['body' => $token]);
+      $guzzle5Request = new GuzzleHttp\Message\Request('POST', '/', array('body' => $token));
       $http->expects($this->once())
         ->method('createRequest')
         ->will($this->returnValue($guzzle5Request));
